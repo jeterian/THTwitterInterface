@@ -1,0 +1,29 @@
+{
+  "name": "fenixfeed",
+  "version": "1.0.0",
+  "description": "Treehouse Twitter Interface Project",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "jade": "^1.11.0",
+    "twit": "^2.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./public/js/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeterian/THTwitterInterface.git"
+  },
+  "keywords": [
+    "twitter"
+  ],
+  "author": "jeterian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeterian/THTwitterInterface/issues"
+  },
+  "homepage": "https://github.com/jeterian/THTwitterInterface#readme"
+}
