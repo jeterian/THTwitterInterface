@@ -1,53 +1,21 @@
-(function() {
+'use strict';
 
-	'use strict';
+// General Setup: Plugins, Variables, Etc.
+const express = require('express');
+const app = express();
+const path = require('path');
+const bodyPar = require('body-parser');
+const twitter = require('./twitter.js');
+const routes = require('../routes/index.js');
+const config = require('./config.js');
+const Twit = require('twit');
+const T = new Twit({
+	consumer_key: config.consumer_key,
+	consumer_secret: config.consumer_secret,
+	access_token: config.access_token,
+	access_token_secret: config.access_token_secret
+});
 
-	// Set Up (Packages, variables, etc.)
-	const express = require('express');
-	const Twit = require('twit');
-	const pug = require('pug');
-	const config = require('./config.js');
-
-	var app = express();
-	var friends;
-	var timeLine;
-	var messages;
-
-	// View Engine, Directories for Static Resources and Templates
-	app.use(express.static(__dirname + '/public'));
-	app.set('view engine', 'pug');
-	app.set('views', __dirname + '/templates');
-
-	// Server
-	app.listen(3000, function() {
-		console.log("Server is running on port 3000.");
-	});
-
-	// Receiving data from Twitter via Twit
-	app.use((req, res, next) => {
-		const login = twit.getUser(config);
-
-		req.directMessages = twit.getDirectMessages(login);
-		req.timelineTweets = twit.getTimeline(login);
-		req.followingUsers = twit.getFollowing(login);
-		next();
-	});
-
-	// Main Page Handler
-	app.get('/', function(req, res) {
-		req.timelineTweets.then(function(info) {
-			timeLine = info.data;
-		req.directMessages.then(function(info) {
-			message = info.data;
-		req.followingUsers.then(function(info) {
-			friends = info.data.users;
-
-			res.render(__dirname + '/templates/index.pug', )
-		})
-		})
-		})
-	})
-
-
-	
-})
+// View Engine, Static Directory
+app.set('views', path.join(__dirname, "..", "views"));
+app.set('view engine', 'pug');
