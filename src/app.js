@@ -30,6 +30,16 @@ app.get('/', function(req, res) {
 	});
 });
 
+// User Profile Data
+T.get('account/verify_credentials', (error, data) => {
+	const userProfile = {};
+	userProfile.name = data.name;
+	userProfile.screen_name = data.screen_name;
+	userProfile.profile_image_url = data.profile_image_url;
+	userProfile.friends_count = data.friends_count;
+	profile.push(userProfile);
+});
+
 // Retrieve five most recent tweets
 T. get('statuses/user_timeline', {count: 5}, (error, data) => {
 	data.forEach(tweet => {
@@ -38,5 +48,17 @@ T. get('statuses/user_timeline', {count: 5}, (error, data) => {
 		userTweet.created_at = moment(tweet.created_at).format('MM/DD/YY');
 		userTweet.retweet_count = tweet.retweet_count;
 		userTweet.favorite_count = tweet.favorite_count;
+		userTweet.profile_image_url = tweet.user.profile_image_url;
+		userTweet.name = tweet.user.name;
+		userTweet.screen_name = tweet.user.screen_name;
+		tweets.push(userTweet);
+	});
+});
+
+// Retrieve five most recent friends
+T.get('friends/list', {count: 5}, (error, data) => {
+	data.users.forEach(user => {
+		const 
+		friends.screen_name = user
 	})
 })
