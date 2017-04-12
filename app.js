@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const pug = require('pug');
 const twit = require('twit');
-const config = require('../config.js');
+const config = require('./config.js');
 const moment = require('moment');
 const port = 8080;
 
@@ -17,11 +17,11 @@ var messages = [];
 
 // View Engine & Static Directory
 app.set('view engine', 'pug');
-app.set('templates', __dirname + '/templates');
+app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-	res.render(__dirname + '/templates/main.pug', {
+	res.render(__dirname + '/views/main.pug', {
 		profile: profile,
 		tweets: tweets,
 		friends: friends,
