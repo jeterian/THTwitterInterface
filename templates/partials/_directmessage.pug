@@ -1,0 +1,13 @@
+.grid-33
+  .app--section
+    ul.app--message--list
+      li
+        h3
+          | Most recent recieved messages
+        ul.app--message--conversation
+          each message in messages
+            li.app--message
+              .app--avatar(style='background-image: url(' + message.profile_image_url + ')')
+                img(src='images/f-spore.png')
+              p.app--message--text #{message.text}
+              p.app--message--timestamp #{message.created_at}
